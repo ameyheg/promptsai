@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Prompt Library — Training Session</title>
+<meta name="description" content="AI prompts and resources for using AI tools for higher productivity in the workplace.">
+<link rel="stylesheet" href="styles.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🤖</text></svg>">
+</head>
+<body>
+
+<header>
+  <div class="logo">
+    <div class="logo-mark">AI</div>
+    <div>
+      <div class="logo-text">AI Prompt Library</div>
+      <div class="logo-sub">Training Session</div>
+    </div>
+  </div>
+  <div class="header-right">
+    <div class="search-wrap">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+      <input type="text" id="search" placeholder="Search prompts…">
+    </div>
+    <span class="prompt-count" id="count-display">70+ prompts</span>
+  </div>
+</header>
+
+<div class="hero">
+  <div class="hero-tag">Live Training · April 2026</div>
+  <h1>Your AI <span>Prompt</span><br>Toolkit</h1>
+  <p class="hero-desc">All prompts from today's session in one place. Click <strong style="color:var(--text)">Copy</strong> on any card, then paste directly into ChatGPT, Claude, or Gemini.</p>
+</div>
+
+<div class="cat-nav">
+  <button class="cat-btn active" data-cat="all">
+    <span class="cat-dot" style="background:#8a8fa0"></span> All
+  </button>
+  <button class="cat-btn" data-cat="writing">
+    <span class="cat-dot" style="background:var(--cat1)"></span> Writing & Email
+  </button>
+  <button class="cat-btn" data-cat="summarizing">
+    <span class="cat-dot" style="background:var(--cat2)"></span> Summarizing
+  </button>
+  <button class="cat-btn" data-cat="research">
+    <span class="cat-dot" style="background:var(--cat3)"></span> Research & Ideas
+  </button>
+  <button class="cat-btn" data-cat="presentation">
+    <span class="cat-dot" style="background:var(--cat4)"></span> Presentations
+  </button>
+  <button class="cat-btn" data-cat="spreadsheet">
+    <span class="cat-dot" style="background:var(--cat5)"></span> Spreadsheets
+  </button>
+  <button class="cat-btn" data-cat="data">
+    <span class="cat-dot" style="background:var(--cat6)"></span> Data Analysis
+  </button>
+  <button class="cat-btn" data-cat="resources">
+    <span class="cat-dot" style="background:var(--cat7)"></span> Tools & Safety
+  </button>
+</div>
+
+<main>
+
+<!-- Dynamic prompt sections -->
+<div id="promptSections"></div>
+
+<!-- ── Learning Objectives ── -->
+<div class="section" data-section="resources" id="objectives">
+  <div class="section-header">
+    <div class="section-icon icon-objectives">🎯</div>
+    <div class="section-title">Learning Objectives</div>
+  </div>
+  <div class="info-card">
+    <ul>
+      <li>Understand why AI matters for productivity in modern workplaces</li>
+      <li>Use AI effectively to draft emails, letters, and reports faster and more clearly</li>
+      <li>How to write effective prompts for better results from AI tools</li>
+      <li>Use AI for research, idea generation &amp; summarizing docs</li>
+      <li>AI tools for creating PowerPoint presentations and videos</li>
+      <li>Use AI for spreadsheet creation, business data analysis and generation of management insights</li>
+      <li>Responsible use of AI: Protecting confidential data and checking accuracy of AI outputs</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ── AI Opportunities ── -->
+<div class="section" data-section="resources" id="ai-opportunities">
+  <div class="section-header">
+    <div class="section-icon icon-objectives">💼</div>
+    <div class="section-title">AI Opportunities by Department</div>
+  </div>
+  <div class="info-card" style="overflow-x:auto;">
+    <table class="opportunities-table">
+      <thead>
+        <tr>
+          <th>Department</th>
+          <th>Current Challenge</th>
+          <th>AI Use Case</th>
+          <th>Benefits</th>
+          <th>Complexity</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Leadership Team</strong></td>
+          <td>Reading lengthy reports from multiple departments</td>
+          <td>Create one-page executive summaries highlighting risks, opportunities and action items</td>
+          <td>Faster and better decision-making</td>
+          <td><span class="complexity-badge medium">Medium</span></td>
+        </tr>
+        <tr>
+          <td><strong>Audit</strong></td>
+          <td>Converting observations into professional reports</td>
+          <td>Draft audit reports and suggest possible corrective actions</td>
+          <td>Faster documentation and follow-up</td>
+          <td><span class="complexity-badge low">Low</span></td>
+        </tr>
+        <tr>
+          <td><strong>Finance</strong></td>
+          <td>Monthly reports require significant effort to prepare and analyse</td>
+          <td>Summarise financial reports and explain key trends in simple language</td>
+          <td>Faster reporting and better management insights</td>
+          <td><span class="complexity-badge low">Low</span></td>
+        </tr>
+        <tr>
+          <td><strong>HR</strong></td>
+          <td>Time spent creating policies, job descriptions and employee communication</td>
+          <td>Draft HR documents, training content and employee announcements</td>
+          <td>Saves time, improves consistency</td>
+          <td><span class="complexity-badge low">Low</span></td>
+        </tr>
+        <tr>
+          <td><strong>Procurement</strong></td>
+          <td>Comparing multiple quotations and suppliers</td>
+          <td>Compare vendor proposals and create supplier evaluation summaries</td>
+          <td>Better decision-making and reduced effort</td>
+          <td><span class="complexity-badge medium">Medium</span></td>
+        </tr>
+        <tr>
+          <td><strong>Shipping &amp; Logistics</strong></td>
+          <td>Tracking delays and communicating updates</td>
+          <td>Analyse shipment delays and draft customer/vendor communication</td>
+          <td>Improved service and quicker response</td>
+          <td><span class="complexity-badge medium">Medium</span></td>
+        </tr>
+        <tr>
+          <td><strong>Operations</strong></td>
+          <td>Managers spend time reviewing large operational reports</td>
+          <td>Generate executive summaries of daily, weekly and monthly operations data</td>
+          <td>Faster reviews and quicker action</td>
+          <td><span class="complexity-badge medium">Medium</span></td>
+        </tr>
+        <tr>
+          <td><strong>Sales</strong></td>
+          <td>Preparing proposals and customer presentations</td>
+          <td>Create proposals, presentations and meeting summaries</td>
+          <td>Faster customer response and improved productivity</td>
+          <td><span class="complexity-badge low">Low</span></td>
+        </tr>
+        <tr>
+          <td><strong>Maintenance</strong></td>
+          <td>Understanding recurring breakdown patterns</td>
+          <td>Analyse maintenance records and identify recurring causes of downtime</td>
+          <td>Better planning and reduced downtime</td>
+          <td><span class="complexity-badge medium">Medium</span></td>
+        </tr>
+        <tr>
+          <td><strong>IT</strong></td>
+          <td>Repetitive user queries and documentation work</td>
+          <td>Create FAQs, user guides and analyse support tickets</td>
+          <td>Reduced support workload</td>
+          <td><span class="complexity-badge medium">Medium</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- ── Writing Effective Prompts ── -->
+<div class="section" data-section="resources" id="prompting-tips">
+  <div class="section-header">
+    <div class="section-icon icon-prompting">🧠</div>
+    <div class="section-title">Writing Effective Prompts</div>
+  </div>
+  <div class="steps-grid">
+    <div class="step-card" style="--card-accent:var(--cat1)">
+      <div class="step-num" style="background:rgba(232,99,26,0.12);color:var(--cat1);">1</div>
+      <h4>Role</h4>
+      <p>Tell the AI what role it should take.<br><em>"Act like a sr. business analyst"</em></p>
+    </div>
+    <div class="step-card" style="--card-accent:var(--cat3)">
+      <div class="step-num" style="background:rgba(168,85,247,0.12);color:var(--cat3);">2</div>
+      <h4>Context</h4>
+      <p>Share your situation so AI understands your needs better.<br><em>"I have to prepare a monthly report with only 30 min to review data"</em></p>
+    </div>
+    <div class="step-card" style="--card-accent:var(--cat2)">
+      <div class="step-num" style="background:rgba(59,158,221,0.12);color:var(--cat2);">3</div>
+      <h4>Task</h4>
+      <p>Clearly state what you want the AI to do.<br><em>"Summarise this data and highlight the key trends"</em></p>
+    </div>
+    <div class="step-card" style="--card-accent:var(--cat5)">
+      <div class="step-num" style="background:rgba(245,166,35,0.12);color:var(--cat5);">4</div>
+      <h4>Example</h4>
+      <p>Share a similar reference if you have one.<br><em>"Like the monthly executive summary we send to management"</em></p>
+    </div>
+    <div class="step-card" style="--card-accent:var(--cat4)">
+      <div class="step-num" style="background:rgba(62,207,142,0.12);color:var(--cat4);">5</div>
+      <h4>Format</h4>
+      <p>Specify how you want the output.<br><em>"Short bullets" or "Table with 2 cols"</em></p>
+    </div>
+    <div class="step-card" style="--card-accent:var(--cat7)">
+      <div class="step-num" style="background:rgba(236,72,153,0.12);color:var(--cat7);">6</div>
+      <h4>Tone</h4>
+      <p>Mention the tone you want — formal, casual, polite, etc.<br><em>"Professional but friendly, suitable for internal communication"</em></p>
+    </div>
+  </div>
+  <div class="info-card" style="margin-top:12px;text-align:center;">
+    <h3>👑 Context is King!</h3>
+    <p style="color:var(--muted);font-size:13px;font-weight:300;">Prompting is an iterative process — refine your prompt to get better results.</p>
+  </div>
+  <div class="info-card" style="margin-top:12px;">
+    <h3>🤖 Using AI to Improve Prompts</h3>
+    <p style="color:var(--muted);font-size:13px;margin-bottom:10px;font-weight:300;">Use this Custom GPT (created by Amey Hegde) to automatically refine and improve your prompts for better AI results.</p>
+    <div class="tools-grid">
+      <a href="https://chatgpt.com/g/g-684fb793368c819194afae90bab19026-prompt-maker" target="_blank" class="tool-chip"><span class="tool-icon">✨</span> Prompt Maker (Custom GPT)</a>
+    </div>
+  </div>
+</div>
+
+<!-- ── AI for Coding ── -->
+<div class="section" data-section="resources" id="coding">
+  <div class="section-header">
+    <div class="section-icon icon-coding">💻</div>
+    <div class="section-title">AI for Coding & Custom Apps</div>
+  </div>
+  <div class="info-card">
+    <h3>🤖 Coding Assistants & IDEs</h3>
+    <ul>
+      <li>Claude.ai (Sonnet 4.6 extended) — Free plan available</li>
+      <li>Cursor — AI-powered IDE</li>
+      <li>Antigravity (Google) — AI coding agent</li>
+      <li>Claude Code (Anthropic) — Terminal coding agent</li>
+      <li>Codex (OpenAI) — Code generation</li>
+    </ul>
+  </div>
+  <div class="info-card">
+    <h3>🌐 AI Agents (Real-world Tasks)</h3>
+    <ul>
+      <li>Claude Cowork — Autonomous work assistant</li>
+      <li>Manus Computer — Computer-use agent</li>
+      <li>Perplexity Computer — Research + action agent</li>
+      <li>ChatGPT Agent — Integrated task agent</li>
+    </ul>
+  </div>
+  <div class="info-card">
+    <h3>📚 RAG — Retrieval-Augmented Generation</h3>
+    <p style="color:var(--muted);font-size:13px;margin-bottom:10px;font-weight:300;">Upload your own sources to <a href="https://notebooklm.google.com" target="_blank" style="color:var(--accent);text-decoration:underline;text-underline-offset:3px;font-weight:500;">NotebookLM.google.com</a> to generate:</p>
+    <ul>
+      <li>Infographics &amp; mind maps</li>
+      <li>Podcasts &amp; video overviews</li>
+      <li>Slides &amp; presentations</li>
+      <li>Quizzes &amp; blog articles</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ── AI Tools Directory ── -->
+<div class="section" data-section="resources" id="tools">
+  <div class="section-header">
+    <div class="section-icon icon-tools">🛠️</div>
+    <div class="section-title">AI Tools Directory</div>
+  </div>
+  <div class="info-card">
+    <h3>💭 Thinking & Deep Research</h3>
+    <div class="tools-grid" style="margin-top:10px;">
+      <a href="https://chatgpt.com" target="_blank" class="tool-chip"><span class="tool-icon">🟢</span> ChatGPT</a>
+      <a href="https://gemini.google.com" target="_blank" class="tool-chip"><span class="tool-icon">🔵</span> Gemini</a>
+      <a href="https://perplexity.ai" target="_blank" class="tool-chip"><span class="tool-icon">🟣</span> Perplexity AI</a>
+    </div>
+  </div>
+  <div class="info-card">
+    <h3>📽️ Presentations</h3>
+    <div class="tools-grid" style="margin-top:10px;">
+      <a href="https://claude.ai" target="_blank" class="tool-chip"><span class="tool-icon">🟠</span> Claude AI</a>
+      <a href="https://chatgpt.com" target="_blank" class="tool-chip"><span class="tool-icon">🟢</span> ChatGPT</a>
+      <a href="https://gamma.app" target="_blank" class="tool-chip"><span class="tool-icon">🟡</span> Gamma.app</a>
+    </div>
+  </div>
+  <div class="info-card">
+    <h3>🎬 Video Creation</h3>
+    <div class="tools-grid" style="margin-top:10px;">
+      <a href="https://invideo.io" target="_blank" class="tool-chip"><span class="tool-icon">🎥</span> InVideo</a>
+      <a href="https://heygen.com" target="_blank" class="tool-chip"><span class="tool-icon">🧑</span> HeyGen</a>
+      <a href="https://gemini.google.com" target="_blank" class="tool-chip"><span class="tool-icon">🔵</span> Gemini Omni Fast</a>
+      <a href="https://picstory.ai" target="_blank" class="tool-chip"><span class="tool-icon">🖼️</span> Picstory AI</a>
+    </div>
+  </div>
+  <div class="info-card">
+    <h3>🖼️ Image Generation</h3>
+    <div class="tools-grid" style="margin-top:10px;">
+      <a href="https://chatgpt.com" target="_blank" class="tool-chip"><span class="tool-icon">🟢</span> ChatGPT</a>
+      <a href="https://gemini.google.com" target="_blank" class="tool-chip"><span class="tool-icon">🔵</span> Gemini</a>
+    </div>
+  </div>
+  <div class="info-card">
+    <h3>🎵 Music</h3>
+    <div class="tools-grid" style="margin-top:10px;">
+      <a href="https://suno.com" target="_blank" class="tool-chip"><span class="tool-icon">🎵</span> Suno</a>
+    </div>
+  </div>
+  <div class="info-card">
+    <h3>📊 Data & Spreadsheets</h3>
+    <div class="tools-grid" style="margin-top:10px;">
+      <a href="https://claude.ai" target="_blank" class="tool-chip"><span class="tool-icon">🟠</span> Claude AI</a>
+      <a href="https://chatgpt.com" target="_blank" class="tool-chip"><span class="tool-icon">🟢</span> ChatGPT</a>
+      <a href="https://julius.ai" target="_blank" class="tool-chip"><span class="tool-icon">📈</span> Julius AI</a>
+      <a href="https://notebooklm.google.com" target="_blank" class="tool-chip"><span class="tool-icon">📓</span> NotebookLM</a>
+    </div>
+  </div>
+</div>
+
+<!-- ── Safety ── -->
+<div class="section" data-section="resources" id="safety">
+  <div class="section-header">
+    <div class="section-icon icon-safety">🛡️</div>
+    <div class="section-title">Safety, Accuracy & Best Practices</div>
+  </div>
+  <div class="info-card">
+    <h3>✅ Best Practices</h3>
+    <ul>
+      <li><strong style="color:var(--text)">Protect personal information:</strong> Do not enter client names, phone numbers, photos, Aadhaar or any identifiable details into AI tools.</li>
+      <li><strong style="color:var(--text)">Avoid sharing confidential designs:</strong> Remove part numbers or unique identifiers before entering technical details.</li>
+      <li><strong style="color:var(--text)">Always double-check AI answers:</strong> AI can make mistakes. Use your own judgement for accuracy.</li>
+      <li><strong style="color:var(--text)">Use AI for support, not final decisions:</strong> Critical decisions must follow your organisation policy &amp; guidelines.</li>
+    </ul>
+  </div>
+  <div class="safety-grid">
+    <div class="safety-card danger">
+      <h4>🚫 What NOT to Share</h4>
+      <ul>
+        <li>🔴 Images/drawings of confidential or patented designs</li>
+        <li>🔴 Proprietary designs or specifications</li>
+        <li>🔴 Phone numbers or WhatsApp chats</li>
+        <li>🔴 Internal confidential business documents</li>
+        <li>🔴 Documents with staff names, salaries, or confidential info</li>
+      </ul>
+    </div>
+    <div class="safety-card safe">
+      <h4>✅ What is Generally Safe</h4>
+      <ul>
+        <li>🟢 Fictional examples</li>
+        <li>🟢 Rough notes</li>
+        <li>🟢 SOP steps</li>
+        <li>🟢 General process descriptions</li>
+        <li>🟢 Public information</li>
+      </ul>
+    </div>
+  </div>
+  <div class="info-card" style="margin-top:12px;">
+    <h3>🏛️ Governance Guidelines</h3>
+    <ul>
+      <li>Do not upload financial statements before public release</li>
+      <li>Do not upload audit reports containing confidential findings</li>
+      <li>Do not upload contracts without approval</li>
+      <li>Use enterprise-approved AI tools whenever possible</li>
+      <li>Verify all AI-generated business recommendations before implementation</li>
+    </ul>
+  </div>
+  <div class="info-card" style="margin-top:12px;">
+    <h3>⚠️ AI Hallucinations</h3>
+    <p style="color:var(--muted);font-size:13px;margin-bottom:10px;font-weight:300;">
+      <strong style="color:var(--text)">What are they?</strong> The AI gives an answer that looks correct but is actually wrong or partly made up.<br>
+      <strong style="color:var(--text)">Why it happens:</strong> AI tries to fill missing information or guesses when the prompt is unclear or when AI doesn't have sufficient data about the query.
+    </p>
+    <ul>
+      <li>Use <strong style="color:var(--text)">Thinking mode</strong> for step-by-step reasoning</li>
+      <li>Ask the AI to <strong style="color:var(--text)">show its sources</strong> or cite references</li>
+      <li><strong style="color:var(--text)">Cross-check</strong> answers with trusted sources or a senior colleague</li>
+      <li>If unsure, <strong style="color:var(--text)">do not use</strong> the AI output for critical decisions</li>
+    </ul>
+  </div>
+</div>
+
+<div class="no-results" id="no-results">
+  <h3>No prompts found</h3>
+  <p>Try a different search term</p>
+</div>
+
+</main>
+
+<div class="cta-banner" style="max-width:1100px;margin:0 auto;padding:0 2rem 2rem;">
+  <div class="cta-inner" style="display:flex;align-items:center;gap:16px;background:linear-gradient(135deg,#25d366 0%,#128c7e 100%);border-radius:16px;padding:24px 28px;color:#fff;box-shadow:0 4px 20px rgba(37,211,102,0.25);">
+    <div class="cta-icon" style="font-size:2rem;flex-shrink:0;">💬</div>
+    <div class="cta-content" style="flex:1;">
+      <h3 style="font-family:'Syne',sans-serif;font-size:1rem;font-weight:700;margin:0 0 2px 0;color:#fff;">For AI Tips & Tutorials</h3>
+      <p style="font-size:13px;font-weight:300;opacity:0.92;margin:0;color:#fff;">Follow the WhatsApp channel — <strong style="font-weight:600;">AI Tips by Amey Hegde</strong> (1400+ followers)</p>
+    </div>
+    <a href="https://whatsapp.com/channel/0029VbAn8rN7YSd8LZq56c3G" target="_blank" class="cta-btn" style="display:inline-flex;align-items:center;padding:10px 22px;background:#fff;color:#128c7e;border-radius:10px;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:600;text-decoration:none;white-space:nowrap;box-shadow:0 2px 8px rgba(0,0,0,0.1);">Follow on WhatsApp</a>
+  </div>
+</div>
+
+<footer>
+  Session by <a href="http://ameyhegde.in" target="_blank">Amey Hegde</a> &nbsp;·&nbsp; amey.hegde@gmail.com
+</footer>
+
+<!-- Toast -->
+<div id="toast" class="toast"></div>
+
+<script src="prompts-data.js"></script>
+<script>
+// Category-to-section mapping
+const CAT_MAP = {
+  'where-ai-helps': 'writing',
+  'writing': 'writing',
+  'summarize': 'summarizing',
+  'ideas': 'research',
+  'deep-research': 'research',
+  'presentations': 'presentation',
+  'video': 'writing',
+  'spreadsheets': 'spreadsheet',
+  'iterative-spreadsheet': 'spreadsheet',
+  'data-analysis': 'data'
+};
+
+// Color mapping per category
+const CAT_COLORS = {
+  'writing': '--cat1',
+  'summarizing': '--cat2',
+  'research': '--cat3',
+  'presentation': '--cat4',
+  'spreadsheet': '--cat5',
+  'data': '--cat6'
+};
+
+const ICON_CLASSES = {
+  'writing': 'icon-writing',
+  'summarizing': 'icon-summarize',
+  'research': 'icon-research',
+  'presentation': 'icon-presentation',
+  'spreadsheet': 'icon-spreadsheet',
+  'data': 'icon-data'
+};
+
+const COPY_SVG = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>`;
+const CHECK_SVG = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="13" height="13"><polyline points="20 6 9 17 4 12"/></svg>`;
+
+function escapeHtml(text) {
+  const div = document.createElement('div');
+  div.textContent = text;
+  return div.innerHTML;
+}
+
+// Render prompt sections
+(function() {
+  const container = document.getElementById('promptSections');
+  let html = '';
+
+  SECTIONS.forEach(section => {
+    const dataCat = CAT_MAP[section.id] || 'writing';
+    const catColor = CAT_COLORS[dataCat] || '--cat1';
+    const iconClass = ICON_CLASSES[dataCat] || 'icon-writing';
+
+    html += `<div class="section" data-section="${dataCat}">`;
+    html += `<div class="section-header">`;
+    html += `<div class="section-icon ${iconClass}">${section.icon}</div>`;
+    html += `<div class="section-title">${section.title}</div>`;
+    html += `<div class="section-count">${section.prompts.length} prompt${section.prompts.length !== 1 ? 's' : ''}</div>`;
+    html += `</div>`;
+    html += `<div class="prompts-grid">`;
+
+    section.prompts.forEach(p => {
+      const rawText = p.text;
+      const displayText = escapeHtml(p.text).replace(/\n/g, '<br>');
+      const deptClass = p.deptClass || 'dept-general';
+      const deptName = p.dept || 'General';
+
+      html += `<div class="prompt-card" style="--card-accent:var(${catColor})" data-text="${escapeHtml(rawText)}">`;
+      html += `<div class="prompt-card-header">`;
+      html += `<div class="prompt-label">${escapeHtml(p.title)}</div>`;
+      html += `<span class="dept-badge ${deptClass}">${escapeHtml(deptName)}</span>`;
+      html += `</div>`;
+      html += `<div class="prompt-text">${displayText}</div>`;
+      if (p.note) {
+        html += `<div class="prompt-note">💡 ${escapeHtml(p.note)}</div>`;
+      }
+      if (p.sampleFile) {
+        html += `<a href="${p.sampleFile.url}" download class="download-btn">⬇ ${escapeHtml(p.sampleFile.label)}</a>`;
+      }
+      html += `<button class="copy-btn" onclick="copyPrompt(this)">${COPY_SVG} Copy Prompt</button>`;
+      if (p.toolLink) {
+        html += `<a href="${p.toolLink.url}" target="_blank" class="tool-link-btn">🌐 ${escapeHtml(p.toolLink.label)}</a>`;
+      }
+      html += `</div>`;
+    });
+
+    html += `</div></div>`;
+  });
+
+  container.innerHTML = html;
+})();
+
+// Copy
+function copyPrompt(btn) {
+  const card = btn.closest('.prompt-card');
+  const text = card.dataset.text;
+  navigator.clipboard.writeText(text).then(() => {
+    btn.classList.add('copied');
+    btn.innerHTML = `${CHECK_SVG} Copied!`;
+    showToast('Prompt copied to clipboard!');
+    setTimeout(() => {
+      btn.classList.remove('copied');
+      btn.innerHTML = `${COPY_SVG} Copy Prompt`;
+    }, 2000);
+  });
+}
+
+function showToast(msg) {
+  const toast = document.getElementById('toast');
+  toast.textContent = '✅ ' + msg;
+  toast.classList.add('show');
+  setTimeout(() => toast.classList.remove('show'), 2500);
+}
+
+// Category filter
+const catBtns = document.querySelectorAll('.cat-btn');
+catBtns.forEach(btn => {
+  btn.addEventListener('click', () => {
+    catBtns.forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    const cat = btn.dataset.cat;
+    document.querySelectorAll('.section').forEach(sec => {
+      sec.classList.toggle('hidden', cat !== 'all' && sec.dataset.section !== cat);
+    });
+    updateCount();
+  });
+});
+
+// Search
+const searchEl = document.getElementById('search');
+searchEl.addEventListener('input', () => {
+  const q = searchEl.value.toLowerCase().trim();
+  let visible = 0;
+
+  document.querySelectorAll('.prompt-card').forEach(card => {
+    const matches = !q ||
+      card.dataset.text.toLowerCase().includes(q) ||
+      card.querySelector('.prompt-label').textContent.toLowerCase().includes(q);
+    card.classList.toggle('hidden', !matches);
+    if (matches) visible++;
+  });
+
+  document.querySelectorAll('.section').forEach(sec => {
+    const hasPromptCards = sec.querySelectorAll('.prompt-card').length > 0;
+    if (hasPromptCards) {
+      const hasVisible = [...sec.querySelectorAll('.prompt-card')].some(c => !c.classList.contains('hidden'));
+      sec.classList.toggle('hidden', !hasVisible && !!q);
+    } else if (q) {
+      sec.classList.toggle('hidden', !sec.textContent.toLowerCase().includes(q));
+    }
+  });
+
+  document.getElementById('no-results').classList.toggle('show', visible === 0 && q.length > 0);
+  document.getElementById('count-display').textContent = `${visible} prompt${visible !== 1 ? 's' : ''}`;
+});
+
+function updateCount() {
+  const visible = [...document.querySelectorAll('.prompt-card')].filter(c => !c.classList.contains('hidden')).length;
+  document.getElementById('count-display').textContent = `${visible} prompts`;
+}
+</script>
+</body>
+</html>
