@@ -7,6 +7,11 @@
 <meta name="description" content="AI prompts and resources for using AI tools for higher productivity in the workplace.">
 <link rel="stylesheet" href="styles.css">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🤖</text></svg>">
+  <script>
+    // Theme check before render to prevent flash of light mode
+    const savedTheme = localStorage.getItem('promptLib_theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+    document.documentElement.setAttribute('data-theme', savedTheme);
+  </script>
 </head>
 <body>
 
@@ -19,6 +24,9 @@
     </div>
   </div>
   <div class="header-right">
+    <button id="theme-toggle" class="theme-toggle-btn" aria-label="Toggle Theme">
+      <span class="theme-icon">🌙</span>
+    </button>
     <div class="search-wrap">
       <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
       <input type="text" id="search" placeholder="Search prompts…">
@@ -57,6 +65,11 @@
   <button class="cat-btn" data-cat="resources">
     <span class="cat-dot" style="background:var(--cat7)"></span> Tools & Safety
   </button>
+  <div class="dept-select-wrap">
+    <select id="dept-select" class="dept-select">
+      <option value="all">💼 All Departments</option>
+    </select>
+  </div>
 </div>
 
 <main>
@@ -101,70 +114,70 @@
         </tr>
       </thead>
       <tbody>
-        <tr>
+        <tr data-dept="Leadership">
           <td><strong>Leadership Team</strong></td>
           <td>Reading lengthy reports from multiple departments</td>
           <td>Create one-page executive summaries highlighting risks, opportunities and action items</td>
           <td>Faster and better decision-making</td>
           <td><span class="complexity-badge medium">Medium</span></td>
         </tr>
-        <tr>
+        <tr data-dept="Audit">
           <td><strong>Audit</strong></td>
           <td>Converting observations into professional reports</td>
           <td>Draft audit reports and suggest possible corrective actions</td>
           <td>Faster documentation and follow-up</td>
           <td><span class="complexity-badge low">Low</span></td>
         </tr>
-        <tr>
+        <tr data-dept="Finance,Accounts">
           <td><strong>Finance</strong></td>
           <td>Monthly reports require significant effort to prepare and analyse</td>
           <td>Summarise financial reports and explain key trends in simple language</td>
           <td>Faster reporting and better management insights</td>
           <td><span class="complexity-badge low">Low</span></td>
         </tr>
-        <tr>
+        <tr data-dept="HR">
           <td><strong>HR</strong></td>
           <td>Time spent creating policies, job descriptions and employee communication</td>
           <td>Draft HR documents, training content and employee announcements</td>
           <td>Saves time, improves consistency</td>
           <td><span class="complexity-badge low">Low</span></td>
         </tr>
-        <tr>
+        <tr data-dept="SCM">
           <td><strong>Procurement</strong></td>
           <td>Comparing multiple quotations and suppliers</td>
           <td>Compare vendor proposals and create supplier evaluation summaries</td>
           <td>Better decision-making and reduced effort</td>
           <td><span class="complexity-badge medium">Medium</span></td>
         </tr>
-        <tr>
+        <tr data-dept="SCM,Operations">
           <td><strong>Shipping &amp; Logistics</strong></td>
           <td>Tracking delays and communicating updates</td>
           <td>Analyse shipment delays and draft customer/vendor communication</td>
           <td>Improved service and quicker response</td>
           <td><span class="complexity-badge medium">Medium</span></td>
         </tr>
-        <tr>
+        <tr data-dept="Operations,Production">
           <td><strong>Operations</strong></td>
           <td>Managers spend time reviewing large operational reports</td>
           <td>Generate executive summaries of daily, weekly and monthly operations data</td>
           <td>Faster reviews and quicker action</td>
           <td><span class="complexity-badge medium">Medium</span></td>
         </tr>
-        <tr>
+        <tr data-dept="Sales,Marketing">
           <td><strong>Sales</strong></td>
           <td>Preparing proposals and customer presentations</td>
           <td>Create proposals, presentations and meeting summaries</td>
           <td>Faster customer response and improved productivity</td>
           <td><span class="complexity-badge low">Low</span></td>
         </tr>
-        <tr>
+        <tr data-dept="Maintenance,Engineering">
           <td><strong>Maintenance</strong></td>
           <td>Understanding recurring breakdown patterns</td>
           <td>Analyse maintenance records and identify recurring causes of downtime</td>
           <td>Better planning and reduced downtime</td>
           <td><span class="complexity-badge medium">Medium</span></td>
         </tr>
-        <tr>
+        <tr data-dept="IT">
           <td><strong>IT</strong></td>
           <td>Repetitive user queries and documentation work</td>
           <td>Create FAQs, user guides and analyse support tickets</td>
@@ -521,51 +534,149 @@ function showToast(msg) {
   setTimeout(() => toast.classList.remove('show'), 2500);
 }
 
-// Category filter
+// Dynamic Dropdown Population & Filter Load on Startup
+(function() {
+  // 1. Populate depts
+  const depts = new Set();
+  SECTIONS.forEach(sec => {
+    sec.prompts.forEach(p => {
+      if (p.dept) depts.add(p.dept.trim());
+    });
+  });
+
+  const sortedDepts = [...depts].sort();
+  const select = document.getElementById('dept-select');
+  if (select) {
+    let optionsHtml = '<option value="all">💼 All Departments</option>';
+    sortedDepts.forEach(d => {
+      optionsHtml += `<option value="${escapeHtml(d)}">${escapeHtml(d)}</option>`;
+    });
+    select.innerHTML = optionsHtml;
+  }
+
+  // 2. Load category from localStorage
+  const savedCat = localStorage.getItem('promptLib_cat') || 'all';
+  const catBtn = document.querySelector(`.cat-btn[data-cat="${savedCat}"]`);
+  if (catBtn) {
+    document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
+    catBtn.classList.add('active');
+  }
+
+  // 3. Load department from localStorage
+  const savedDept = localStorage.getItem('promptLib_dept') || 'all';
+  if (select) {
+    select.value = savedDept;
+  }
+
+  // 4. Update Theme Toggle icon state
+  const currentTheme = document.documentElement.getAttribute('data-theme') || 'light';
+  const themeToggle = document.getElementById('theme-toggle');
+  if (themeToggle) {
+    themeToggle.querySelector('.theme-icon').textContent = currentTheme === 'dark' ? '☀️' : '🌙';
+  }
+
+  // 5. Apply filters initially
+  applyFilters();
+})();
+
+// Unified Filter Function
+function applyFilters() {
+  const activeCatBtn = document.querySelector('.cat-btn.active');
+  const cat = activeCatBtn ? activeCatBtn.dataset.cat : 'all';
+  
+  const q = document.getElementById('search').value.toLowerCase().trim();
+  
+  const deptSelect = document.getElementById('dept-select');
+  const selectedDept = deptSelect ? deptSelect.value : 'all';
+
+  // Save filters to localStorage
+  localStorage.setItem('promptLib_cat', cat);
+  localStorage.setItem('promptLib_dept', selectedDept);
+  
+  // Update select styling (highlight if not 'all')
+  if (deptSelect) {
+    deptSelect.classList.toggle('active', selectedDept !== 'all');
+  }
+
+  let totalVisible = 0;
+
+  // 1. Filter Prompt Cards
+  document.querySelectorAll('.prompt-card').forEach(card => {
+    const textMatches = !q ||
+      card.dataset.text.toLowerCase().includes(q) ||
+      card.querySelector('.prompt-label').textContent.toLowerCase().includes(q);
+
+    const cardDeptBadge = card.querySelector('.dept-badge');
+    const cardDept = cardDeptBadge ? cardDeptBadge.textContent.trim() : '';
+    const deptMatches = (selectedDept === 'all' || cardDept === selectedDept);
+
+    const isVisible = textMatches && deptMatches;
+    card.classList.toggle('hidden', !isVisible);
+    if (isVisible) totalVisible++;
+  });
+
+  // 2. Filter Sections
+  document.querySelectorAll('.section').forEach(sec => {
+    const hasPromptCards = sec.querySelectorAll('.prompt-card').length > 0;
+    const catMatches = (cat === 'all' || sec.dataset.section === cat);
+
+    if (hasPromptCards) {
+      const hasVisiblePrompt = [...sec.querySelectorAll('.prompt-card')].some(c => !c.classList.contains('hidden'));
+      sec.classList.toggle('hidden', !catMatches || !hasVisiblePrompt);
+    } else {
+      // For static info/resources sections
+      const matchesSearch = !q || sec.textContent.toLowerCase().includes(q);
+      const isVisible = catMatches && matchesSearch && (selectedDept === 'all');
+      sec.classList.toggle('hidden', !isVisible);
+    }
+  });
+
+  // 3. Filter Opportunities table rows
+  document.querySelectorAll('.opportunities-table tbody tr').forEach(row => {
+    const rowDeptsStr = row.dataset.dept || '';
+    const rowDepts = rowDeptsStr.split(',').map(d => d.trim());
+    const matchesDept = (selectedDept === 'all' || rowDepts.includes(selectedDept));
+    row.style.display = matchesDept ? '' : 'none';
+  });
+
+  // 4. Update UI labels and count
+  document.getElementById('no-results').classList.toggle('show', totalVisible === 0 && (q.length > 0 || selectedDept !== 'all'));
+  document.getElementById('count-display').textContent = `${totalVisible} prompt${totalVisible !== 1 ? 's' : ''}`;
+}
+
+// Category filter event listeners
 const catBtns = document.querySelectorAll('.cat-btn');
 catBtns.forEach(btn => {
   btn.addEventListener('click', () => {
     catBtns.forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
-    const cat = btn.dataset.cat;
-    document.querySelectorAll('.section').forEach(sec => {
-      sec.classList.toggle('hidden', cat !== 'all' && sec.dataset.section !== cat);
-    });
-    updateCount();
+    applyFilters();
   });
 });
 
-// Search
+// Search event listener
 const searchEl = document.getElementById('search');
-searchEl.addEventListener('input', () => {
-  const q = searchEl.value.toLowerCase().trim();
-  let visible = 0;
+searchEl.addEventListener('input', applyFilters);
 
-  document.querySelectorAll('.prompt-card').forEach(card => {
-    const matches = !q ||
-      card.dataset.text.toLowerCase().includes(q) ||
-      card.querySelector('.prompt-label').textContent.toLowerCase().includes(q);
-    card.classList.toggle('hidden', !matches);
-    if (matches) visible++;
+// Department select event listener
+const deptSelectEl = document.getElementById('dept-select');
+if (deptSelectEl) {
+  deptSelectEl.addEventListener('change', applyFilters);
+}
+
+// Theme Toggle Event Listener
+const themeToggleBtn = document.getElementById('theme-toggle');
+if (themeToggleBtn) {
+  themeToggleBtn.addEventListener('click', () => {
+    const currentTheme = document.documentElement.getAttribute('data-theme') || 'light';
+    const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+    
+    document.documentElement.setAttribute('data-theme', newTheme);
+    localStorage.setItem('promptLib_theme', newTheme);
+    
+    themeToggleBtn.querySelector('.theme-icon').textContent = newTheme === 'dark' ? '☀️' : '🌙';
+    showToast(`${newTheme.charAt(0).toUpperCase() + newTheme.slice(1)} mode enabled!`);
   });
-
-  document.querySelectorAll('.section').forEach(sec => {
-    const hasPromptCards = sec.querySelectorAll('.prompt-card').length > 0;
-    if (hasPromptCards) {
-      const hasVisible = [...sec.querySelectorAll('.prompt-card')].some(c => !c.classList.contains('hidden'));
-      sec.classList.toggle('hidden', !hasVisible && !!q);
-    } else if (q) {
-      sec.classList.toggle('hidden', !sec.textContent.toLowerCase().includes(q));
-    }
-  });
-
-  document.getElementById('no-results').classList.toggle('show', visible === 0 && q.length > 0);
-  document.getElementById('count-display').textContent = `${visible} prompt${visible !== 1 ? 's' : ''}`;
-});
-
-function updateCount() {
-  const visible = [...document.querySelectorAll('.prompt-card')].filter(c => !c.classList.contains('hidden')).length;
-  document.getElementById('count-display').textContent = `${visible} prompts`;
 }
 </script>
 </body>

@@ -173,6 +173,50 @@ h1 span { color: var(--accent); }
 
 .cat-dot { width: 8px; height: 8px; border-radius: 50%; }
 
+/* ── Department Select Dropdown ── */
+.dept-select-wrap {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+}
+
+.dept-select {
+  padding: 7px 32px 7px 14px;
+  border-radius: 100px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--muted);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  outline: none;
+  transition: all 0.2s;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.04);
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='none' stroke='%25235a5f72' stroke-width='2' viewBox='0 0 24 24'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+  background-size: 11px;
+}
+
+.dept-select:hover {
+  border-color: var(--accent);
+  color: var(--text);
+}
+
+.dept-select:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(232,99,26,0.1);
+}
+
+.dept-select.active {
+  background: rgba(232,99,26,0.08);
+  border-color: var(--accent);
+  color: var(--accent);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='none' stroke='%2523e8631a' stroke-width='2' viewBox='0 0 24 24'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+}
+
 /* ── Main Layout ── */
 main {
   max-width: 1100px; margin: 0 auto;
@@ -730,3 +774,76 @@ footer a { color: var(--accent); text-decoration: none; font-weight: 500; }
   .opportunities-table thead th,
   .opportunities-table tbody td { padding: 8px 10px; }
 }
+
+/* ── Theme Toggle Button ── */
+.theme-toggle-btn {
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  background: var(--surface2);
+  color: var(--text);
+  display: grid; place-items: center;
+  cursor: pointer;
+  transition: border-color 0.2s, background 0.2s, transform 0.15s, color 0.2s;
+  outline: none;
+  font-size: 14px;
+  flex-shrink: 0;
+}
+.theme-toggle-btn:hover {
+  border-color: var(--accent);
+  background: var(--surface);
+  transform: scale(1.05);
+}
+.theme-toggle-btn:active {
+  transform: scale(0.95);
+}
+
+/* ── Dark Mode Theme Overrides ── */
+[data-theme="dark"] {
+  --bg: #0b0c10;
+  --surface: #15161e;
+  --surface2: #1e2030;
+  --border: #2e3047;
+  --text: #f0f2f6;
+  --muted: #9fa6bc;
+  --accent: #ff7f36;
+  --accent2: #ff9352;
+}
+
+[data-theme="dark"] body::after {
+  background-image: radial-gradient(circle, rgba(255,255,255,0.015) 1px, transparent 1px);
+}
+
+[data-theme="dark"] .prompt-card:hover,
+[data-theme="dark"] .info-card:hover {
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+}
+
+[data-theme="dark"] header {
+  background: rgba(21,22,30,0.88);
+  border-bottom-color: var(--border);
+}
+
+/* Dark mode department badges overrides */
+[data-theme="dark"] .dept-general      { background: rgba(159,166,188,0.12); color: #c5cbdc; }
+[data-theme="dark"] .dept-engineering   { background: rgba(26,106,181,0.18); color: #8fc2f7; }
+[data-theme="dark"] .dept-ops           { background: rgba(184,92,20,0.18); color: #fca75d; }
+[data-theme="dark"] .dept-quality       { background: rgba(14,124,74,0.18); color: #6be3a6; }
+[data-theme="dark"] .dept-scm           { background: rgba(117,48,184,0.18); color: #d09cfc; }
+[data-theme="dark"] .dept-maintenance   { background: rgba(181,123,8,0.18); color: #fcd06d; }
+[data-theme="dark"] .dept-hr            { background: rgba(184,48,110,0.18); color: #fc9cd0; }
+[data-theme="dark"] .dept-accounts      { background: rgba(14,124,107,0.18); color: #6be3cf; }
+[data-theme="dark"] .dept-it            { background: rgba(45,78,168,0.18); color: #8faefc; }
+[data-theme="dark"] .dept-sales         { background: rgba(158,109,7,0.18); color: #fcc75c; }
+[data-theme="dark"] .dept-production    { background: rgba(184,48,48,0.18); color: #fc9c9c; }
+[data-theme="dark"] .dept-finance       { background: rgba(72,122,26,0.18); color: #b0fc6b; }
+[data-theme="dark"] .dept-marketing     { background: rgba(196,45,111,0.18); color: #fc8fb7; }
+
+/* Dark mode complexity badge overrides */
+[data-theme="dark"] .complexity-badge.low { background: rgba(14,124,74,0.18); color: #6be3a6; }
+[data-theme="dark"] .complexity-badge.medium { background: rgba(181,123,8,0.18); color: #fcd06d; }
+[data-theme="dark"] .complexity-badge.high { background: rgba(184,48,48,0.18); color: #fc9c9c; }
+
+/* Dark mode safety cards background overrides */
+[data-theme="dark"] .safety-card.danger { background: rgba(214,51,51,0.07); }
+[data-theme="dark"] .safety-card.safe { background: rgba(22,168,100,0.07); }
